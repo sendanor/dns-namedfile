@@ -2,20 +2,17 @@
 
 const _ = require('lodash');
 const debug = require('nor-debug');
-const is = require('nor-is');
 const fs = require('fs');
-
-const argv_ = [].concat(process.argv_);
-const nodePath = argv_.shift();
-const scriptPath = argv_.shift();
-const scriptDir = path.dirname(scriptPath);
+const parseZones = require('../zones-parser.js');
+const generateZones = require('../zones-generator.js');
 
 let argv = require('minimist')(process.argv.slice(2));
 
 /* */
-function readFile (file) {
+function readFile (path) {
 	"use strict";
-	return fs.readFileSync(file, {encoding:'utf8'});
+	debug.assert(path).is('string');
+	return fs.readFileSync(path, {encoding:'utf8'});
 }
 
 function main () {
@@ -24,19 +21,19 @@ function main () {
 	const parseEnabled = !!argv.p;
 	const generateEnabled = !!argv.g;
 
-	if (parseEnabled || generateEnabled) {
-		const file = _.first(argv._);
-		const data = readFile(file);
+	const filePath = parseEnabled ? argv.p : argv.g;
+
+	if (filePath && parseEnabled) {
+		const data = readFile(filePath);
 		const zones = parseZones(data);
 		console.log(JSON.stringify(zones));
-	} else if (generateEnabled) {
-		const file = _.first(argv._);
-		const data = readFile(file);
+	} else if (filePath && generateEnabled) {
+		const data = readFile(filePath);
 		const zones = JSON.parse(data);
 		const zonesStr = generateZones(zones);
 		console.log(zonesStr);
 	} else {
-		console.log('USAGE: dns-namedfile [-g|-p] FILE');
+		console.log('USAGE: namedfile [-g|-p] FILE');
 		process.exit(1);
 	}
 
@@ -48,4 +45,3 @@ try {
 	debug.error('Error: ', e);
 	process.exit(1);
 }
-
