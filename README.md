@@ -4,7 +4,7 @@ Parse and generate configuration files for Bind into JSON.
 
 ### Install
 
-`npm install dns-namedfile`
+`npm install -g dns-namedfile`
 
 ### Description
 
