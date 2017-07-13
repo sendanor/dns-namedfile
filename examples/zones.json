@@ -1,0 +1,22 @@
+[
+   {
+      "allowQuery" : [
+         "any"
+      ],
+      "file" : "./zones/example.com.zone",
+      "domain" : "example.com",
+      "type" : "master"
+   },
+   {
+      "file" : "./zones/example.fi.zone",
+      "domain" : "example.fi",
+      "type" : "master",
+      "allowQuery" : [
+         "any"
+      ],
+      "allowTransfer" : [
+         "127.0.0.1",
+         "10.1.2.3"
+      ]
+   }
+]
