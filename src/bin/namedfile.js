@@ -6,7 +6,9 @@ const fs = require('fs');
 const parseZones = require('../zones-parser.js');
 const generateZones = require('../zones-generator.js');
 
-let argv = require('minimist')(process.argv.slice(2));
+let argv = require('minimist')(process.argv.slice(2), {
+	boolean: ['x']
+});
 
 /* */
 function readFile (path) {
@@ -18,6 +20,7 @@ function readFile (path) {
 function main () {
 	"use strict";
 
+	const zonePerLine = argv.hasOwnProperty('x');
 	const parseEnabled = !!argv.p;
 	const generateEnabled = !!argv.g;
 
@@ -30,10 +33,10 @@ function main () {
 	} else if (filePath && generateEnabled) {
 		const data = readFile(filePath);
 		const zones = JSON.parse(data);
-		const zonesStr = generateZones(zones);
+		const zonesStr = generateZones(zones, {zonePerLine});
 		console.log(zonesStr);
 	} else {
-		console.log('USAGE: namedfile [-g|-p] FILE');
+		console.log('USAGE: namedfile [-x] [-g|-p] FILE');
 		process.exit(1);
 	}
 

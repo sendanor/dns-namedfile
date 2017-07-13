@@ -58,8 +58,8 @@ function generateZoneBlock (zone) {
 	let block = "";
 	if (zone.type) block += generateZoneType(zone);
 	if (zone.file) block += generateZoneFile(zone);
-	if (zone.allowQuery) block += generateZoneAllowQuery(zone);
 	if (zone.allowTransfer) block += generateZoneAllowTransfer(zone);
+	if (zone.allowQuery) block += generateZoneAllowQuery(zone);
 	if (zone.masters) block += generateZoneMasters(zone);
 	return block;
 }
@@ -78,13 +78,21 @@ function generateZone (zone) {
 }
 
 /** Generate zones */
-function generateZones (zones) {
+function generateZones (zones, opts) {
 	"use strict";
 	debug.assert(zones).is('array');
+	debug.assert(opts).ignore(undefined).is('object');
+
+	const zonePerLine = !!opts.zonePerLine;
+
 	let buffer = [];
 
 	_.forEach(zones, zone => {
-		buffer.push(generateZone(zone));
+		if(zonePerLine) {
+			buffer.push(generateZone(zone).replace(/\n/gm, " "));
+		} else {
+			buffer.push(generateZone(zone));
+		}
 	});
 
 	return buffer.join('\n');
