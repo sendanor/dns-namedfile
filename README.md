@@ -2,6 +2,10 @@
 
 Parse and generate configuration files for Bind into JSON.
 
+### Install
+
+`npm install dns-namedfile`
+
 ### Description
 
 This project can be used to parse partial bind (zone) configuration files into JSON and back to 
