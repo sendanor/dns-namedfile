@@ -260,7 +260,8 @@ function parseZones (context) {
 function parseData (data) {
 
 	// Strip comments out
-	data = data.replace(/(\/\*[^*]*\*\/)|(\/\/[^*]*)/gm, "");
+	data = data.replace(/\/\*[^*]*\*\//gm, "");
+	data = data.replace(/\/\/.*/g, "");
 
 	return parseZones(data);
 }
