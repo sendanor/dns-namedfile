@@ -1,0 +1,36 @@
+{
+  "name": "dns-namedfile",
+  "version": "1.0.0",
+  "description": "Parse Bind configuration files to JSON",
+  "main": "index.js",
+  "bin": {
+    "namedfile": "./src/bin/namedfile.js"
+  },
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sendanor/dns-namedfile.git"
+  },
+  "keywords": [
+    "bind",
+    "named",
+    "zone"
+  ],
+  "author": "Jaakko-Heikki Heusala <jheusala@iki.fi>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sendanor/dns-namedfile/issues"
+  },
+  "homepage": "https://github.com/sendanor/dns-namedfile#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0",
+    "nor-debug": "^1.0.0",
+    "nor-is": "^1.0.0"
+  }
+}
