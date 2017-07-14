@@ -29,7 +29,7 @@ function main () {
 	if (filePath && parseEnabled) {
 		const data = readFile(filePath);
 		const zones = parseZones(data);
-		console.log(JSON.stringify(zones));
+		console.log(JSON.stringify(zones, null, 2));
 	} else if (filePath && generateEnabled) {
 		const data = readFile(filePath);
 		const zones = JSON.parse(data);

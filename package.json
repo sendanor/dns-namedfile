@@ -1,6 +1,6 @@
 {
   "name": "dns-namedfile",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Parse Bind configuration files to JSON",
   "main": "index.js",
   "bin": {
