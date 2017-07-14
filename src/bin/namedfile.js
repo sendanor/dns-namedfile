@@ -20,7 +20,7 @@ function readFile (path) {
 function main () {
 	"use strict";
 
-	const zonePerLine = argv.hasOwnProperty('x');
+	const zonePerLine = !!argv.x;
 	const parseEnabled = !!argv.p;
 	const generateEnabled = !!argv.g;
 
