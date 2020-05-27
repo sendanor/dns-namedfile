@@ -9,6 +9,7 @@ const zoneTypeFormat = 'type %s;\n';
 const zoneFileFormat = 'file "%s";\n';
 const zoneAllowQueryFormat = 'allow-query { %s; };\n';
 const zoneAllowTransferFormat = 'allow-transfer { %s; };\n';
+const zoneAlsoNotifyFormat = 'also-notify { %s; };\n';
 const zoneMastersFormat = 'masters { %s; };\n';
 
 /** */
@@ -44,6 +45,14 @@ function generateZoneAllowTransfer (zone) {
 }
 
 /** */
+function generateZoneAlsoNotify (zone) {
+	"use strict";
+	debug.assert(zone).is('object');
+	debug.assert(zone.alsoNotify).is('array');
+	return util.format(zoneAlsoNotifyFormat, zone.alsoNotify.join(';'));
+}
+
+/** */
 function generateZoneMasters (zone) {
 	"use strict";
 	debug.assert(zone).is('object');
@@ -59,6 +68,7 @@ function generateZoneBlock (zone) {
 	if (zone.type) block += generateZoneType(zone);
 	if (zone.file) block += generateZoneFile(zone);
 	if (zone.allowTransfer) block += generateZoneAllowTransfer(zone);
+	if (zone.alsoNotify) block += generateZoneAlsoNotify(zone);
 	if (zone.allowQuery) block += generateZoneAllowQuery(zone);
 	if (zone.masters) block += generateZoneMasters(zone);
 	return block;
